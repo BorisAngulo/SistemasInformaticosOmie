@@ -1,0 +1,40 @@
+node_modules
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Build/dist (si generas archivos de producción)
+dist/
+build/
+
+# Cache
+.cache/
+.parcel-cache/
+
+# Archivos de Windows
+ehthumbs.db
+Thumbs.db

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/fa231a87fd.js" crossorigin="anonymous"></script>
+    <title>Header Responsivo - Tailwind CSS</title>
+    <link href="./src/output.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <!-- ETAPA 1: Estructura Base, Estilos Globales y Centrado -->
+        <nav class="bg-gray-900 p-4">
+            <div class="container mx-auto">
+                
+                <!-- ETAPA 1: Aplicación del Patrón Mobile First -->
+                <div class="grid grid-cols-1 md:grid-cols-3 items-center">
+                    
+                    <!-- ETAPA 4: Ajuste de Layout en Mobile -->
+                    <div class="md:col-span-1 flex justify-between items-center w-full md:w-auto">
+                        <img class="h-12 w-auto mr-auto" src="img/perrito.jpg" alt="Logo">
+                        
+                        <!-- ETAPA 3: Implementación del Botón de Menú de Hamburguesa -->
+                        <div class="md:hidden text-white text-3xl cursor-pointer">
+                            ☰
+                        </div>
+                    </div>
+                    
+                    <!-- ETAPA 2: Ocultamiento del Menú Principal -->
+                    <div class="hidden md:flex md:col-span-1 justify-center">
+                        <div class="flex justify-end space-x-4">
+                            <a href="#" class="text-white hover:text-blue-400">Inicio</a>
+                            <a href="#" class="text-white hover:text-blue-400">Servicios</a>
+                            <a href="#" class="text-white hover:text-blue-400">Contacto</a>
+                        </div>
+                    </div>
+                    
+                    <!-- ETAPA 5: Revisión de Estilos y Ajustes Finales -->
+                    <div class="hidden md:flex md:col-span-1 justify-end">
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</button>
+                    </div>
+                    
+                </div>
+                <!-- Estructura de anidación completa: nav → container → grid → div (columna) → flex -->
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container mx-auto mt-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 place-items-center">
+                <div class="bg-slate-500 rounded-full flex items-center justify-center w-40 h-40 md:w-60 md:h-60">
+                    <i class="fa-solid fa-user text-6xl text-white md:text-9xl hover:scale-125 hover:rotate-10 transform transition duration-300"></i>
+                </div>
+                 <div class="justify-center text-center">
+                    <div>
+                        <h1 class="font-bold text-4xl mb-5"> Usuario Jonh</h1>
+                        <p> Tiene como pasatiempos distintas actividades como esquiar, jugar videojuegos y leer libros.</p>
+                    </div>
+                    <div class="mt-5">
+                        <i class="fa-solid fa-star text-3xl hover:text-amber-300 hover:scale-110 hover:rotate-6 transform transition duration-300"></i>
+                        <i class="fa-solid fa-star text-3xl hover:text-amber-300 hover:scale-110 hover:rotate-6 transform transition duration-300"></i>
+                        <i class="fa-solid fa-star text-3xl hover:text-amber-300 hover:scale-110 hover:rotate-6 transform transition duration-300"></i>
+                        <i class="fa-solid fa-star text-3xl hover:text-amber-300 hover:scale-110 hover:rotate-6 transform transition duration-300"></i>
+                        <i class="fa-solid fa-star text-3xl hover:text-amber-300 hover:scale-110 hover:rotate-6 transform transition duration-300"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="m-8">
+                <h2 class="text-3xl font-bold mb-6">Videojuegos favoritos</h2>
+                <div class="flex flex-col md:flex-row gap-6 flex-wrap justify-center">
+                    <!-- Tarjeta 1 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 min-w-[250px] hover:scale-105 transform transition duration-300">
+                        <img class="w-full h-48 object-cover" src="img/tloz.jpg" alt="Videojuego 1">
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold mb-2 text-center">The Legend of Zelda</h3>
+                            <p class="text-gray-700">Un juego de aventuras épico donde exploras un vasto mundo lleno de misterios y desafíos.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Tarjeta 2 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 min-w-[250px] hover:scale-105 transform transition duration-300">
+                        <img class="w-full h-48 object-cover" src="img/red.avif" alt="Videojuego 2">
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold mb-2 text-center">Red Dead Redemption</h3>
+                            <p class="text-gray-700">Sumérgete en el salvaje oeste con una historia apasionante y un mundo abierto increíble.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Tarjeta 3 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 min-w-[250px] hover:scale-105 transform transition duration-300">
+                        <img class="w-full h-48 object-cover" src="img/darksouls.jpg" alt="Videojuego 3">
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold mb-2 text-center">Dark Souls</h3>
+                            <p class="text-gray-700">Un desafío intenso con combates tácticos y un diseño de niveles magistral que recompensa la perseverancia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="m-8">
+                <h2 class="text-center font-bold text-3xl mb-4">Informacion de Juegos</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4">
+                    <div class="bg-amber-200 col-span-2 text-center p-10 md:col-span-3">
+                        <h3>Juegos Jugados</h3>
+                        <p>150</p>
+                    </div>
+                    <div class="bg-blue-300 col-span-1 text-center p-10 md:col-span-1">
+                        <h3>Juegos Favoritos</h3>
+                        <p>25</p>
+                    </div>
+                    <div class="bg-red-300 col-span-1 text-center p-10 md:col-span-2">
+                        <h3>Años de Experiencia</h3>
+                        <p>5</p>
+                    </div>
+                    <div class="bg-green-300 col-span-2 text-center p-10 md:col-span-1">
+                        <h3>Horas Jugadas</h3>
+                        <p>2000</p>
+                    </div>
+                    <div class="hidden md:bg-purple-300 text-center p-10 md:col-span-1 md:flex md:items-center">
+                            <img class="md:h-30" src="img/perrito.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+    <footer class="flex bg-gray-700 text-center p-10 justify-between">
+        <h2 class="text-white font-bold">Todos los derechos reservados &copy; 2026</h2>
+        <a class="underline text-blue-600" href="https://youtube.com">nuestras redes</a>
+    </footer>
+</body>
+</html>

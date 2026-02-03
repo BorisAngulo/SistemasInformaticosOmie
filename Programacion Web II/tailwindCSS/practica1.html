@@ -3,13 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="./src/output.css" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    <header class="bg-gray-800 flex justify-between">
-        <img class="size-20 " src="img/perrito.jpg" alt="">
-        <h1>MENU</h1>
+    <header>
+        <!-- ETAPA 1: Estructura Base y Centrado -->
+        <nav class="bg-pink-600 p-4">
+            <div class="container mx-auto">
+                <!-- ETAPA 2: Grid Responsivo (Mobile First) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 items-center">
+                    
+                    <!-- ETAPA 3: Columna 1 - Logo (md:col-span-1) -->
+                    <div class="md:col-span-1">
+                        <img class="h-12 w-auto" src="img/perrito.jpg" alt="Logo">
+                    </div>
+                    
+                    <!-- ETAPA 3 y 4: Columna 2 - Menú Principal con Flexbox -->
+                    <div class="md:col-span-1">
+                        <div class="flex justify-end space-x-4">
+                            <a href="#" class="text-white hover:text-blue-400">Inicio</a>
+                            <a href="#" class="text-white hover:text-blue-400">Servicios</a>
+                            <a href="#" class="text-white hover:text-blue-400">Contacto</a>
+                        </div>
+                    </div>
+                    
+                    <!-- ETAPA 3 y 5: Columna 3 - Botón de Acción -->
+                    <div class="md:col-span-1 flex justify-end">
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </nav>
     </header>
     <main class="">
         <div class="grid grid-cols-1 md:grid-cols-2 text-center items-center">
