@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+  </head>
+  <body class="bg-gray-200 font-mono">
+    <section class="container mx-auto py-12 px-4">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 bg-green-600 px-5 py-10 rounded-2xl">
+      <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
+        <h2 class="font-bold text-3xl text-center mb-4">Registrarse</h2>
+        <form action="">
+          <div class="mb-6">
+            <label for="" class="block">Correo Electronico </label>
+            <input
+              type="email"
+              placeholder="Ingrese su correo electronico"
+              id="email"
+              class="shadow border rounded w-full py-2 px-3 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none leading-tight"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="">Contraseña</label>
+            <input
+              type="password"
+              placeholder="********"
+              id="password"
+              class="shadow border rounded w-full py-2 px-3 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none leading-tight"
+            />
+          </div>
+          
+          <div class="flex justify-center">
+            <button
+              class="bg-blue-600 text-white rounded shadow hover:bg-blue-700 p-3"
+            >
+              Iniciar Sesion
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="hidden md:flex md:justify-center items-center">
+        <img src="img/mario.png" alt="" class="h-80">
+      </div>
+      </div>
+
+      <section class="mt-12">
+        <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
+          <h2 class="font-bold text-3xl text-center mb-6">
+            Formulario de Contacto
+          </h2>
+          <form>
+            <div class="mb-6">
+              <label for="nombre" class="block text-gray-700 font-bold mb-2"
+                >Nombre Completo</label
+              >
+              <input
+                type="text"
+                id="nombre"
+                placeholder="Juan Pérez"
+                class="shadow border rounded w-full py-2 px-3 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none leading-tight"
+              />
+            </div>
+
+            <div class="mb-6">
+              <label
+                for="email-contacto"
+                class="block text-gray-700 font-bold mb-2"
+                >Correo Electrónico</label
+              >
+              <input
+                type="email"
+                id="email-contacto"
+                placeholder="ejemplo@correo.com"
+                class="shadow border rounded w-full py-2 px-3 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none leading-tight"
+              />
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div class="mb-6 col-span-1">
+                <label for="telefono" class="block text-gray-700 font-bold mb-2"
+                  >Teléfono</label
+                >
+                <input
+                  type="tel"
+                  id="telefono"
+                  placeholder="666 555 444"
+                  class="shadow border rounded w-full py-2 px-3 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none leading-tight"
+                />
+              </div>
+
+              <div class="mb-6 col-span-1">
+                <label for="asunto" class="block text-gray-700 font-bold mb-2"
+                  >Asunto</label
+                >
+                <select
+                  id="asunto"
+                  class="shadow border rounded w-full py-2 px-3 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none leading-tight"
+                >
+                  <option value="">Selecciona un asunto</option>
+                  <option value="consulta">Consulta General</option>
+                  <option value="soporte">Soporte Técnico</option>
+                  <option value="ventas">Ventas</option>
+                  <option value="sugerencia">Sugerencia</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-6">
+              <label for="mensaje" class="block text-gray-700 font-bold mb-2"
+                >Mensaje</label
+              >
+              <textarea
+                id="mensaje"
+                rows="5"
+                placeholder="Escribe tu mensaje aquí..."
+                class="w-full border rounded shadow py-2 px-3 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none leading-tight"
+              ></textarea>
+            </div>
+
+            <div class="mb-6">
+              <label
+                for="preferencia"
+                class="block text-gray-700 font-bold mb-2"
+                >Preferencia de Contacto</label
+              >
+              <select
+                id="preferencia"
+                class="shadow border rounded w-full py-2 px-3 text-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none leading-tight"
+              >
+                <option value="">¿Cómo prefieres que te contactemos?</option>
+                <option value="email">Por correo electrónico</option>
+                <option value="telefono">Por teléfono</option>
+                <option value="whatsapp">Por WhatsApp</option>
+              </select>
+            </div>
+
+            <div class="flex justify-center">
+              <button
+                type="submit"
+                class="bg-green-600 text-white rounded shadow hover:bg-green-700 py-3 px-6 font-bold"
+              >
+                Enviar Mensaje
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </section>
+    <button class="bg-blue-500">Boton</button>
+  </body>
+</html>
