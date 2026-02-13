@@ -1,6 +1,7 @@
 import sequelize from './config/database.js';
 import express from 'express';
 import personaRoutes from './routes/personaRoutes.js';
+import listaRoutes from './routes/listaRoutes.js';
 
 const app = express();
 
@@ -10,6 +11,9 @@ app.use(express.urlencoded({ extended: true}));
 
 //rutas
 app.use('/api/personas', personaRoutes);
+
+//listas
+app.use('/api/listas', listaRoutes);
 
 // Ruta de pueba
 app.get('/', (req, res) => {

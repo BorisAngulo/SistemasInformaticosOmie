@@ -1,7 +1,7 @@
 import sequelize from '../config/database.js';
 import { DataTypes } from 'sequelize';
 
-const Persona = sequelize.define( 'Persona', {
+const Estudiante = sequelize.define( 'Persona', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -14,10 +14,18 @@ const Persona = sequelize.define( 'Persona', {
             notEmpty: true
         }
     },
+    curso_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'cursos',
+            key: 'id'
+        }
+    }
 },{
     timestamps: true,
-    tableName: 'personas',
+    tableName: 'estudiantes',
     underscored: true
 });
 
-export default Persona;
+export default Estudiante;

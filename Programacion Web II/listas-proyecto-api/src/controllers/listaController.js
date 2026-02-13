@@ -1,48 +1,48 @@
-import { Estudiante }  from '../models/index.js';
+import { Lista }  from '../models/index.js';
 
-//obtener todas las personas
+//obtener todas las listas
 const obtenerTodos =  async (req, res)=> {
     try{
-        const personas = await Estudiante.findAll({
+        const listas = await Lista.findAll({
             order: [['id', 'ASC']]
         }) 
         res.json(
             {
                 success: true,
-                data: personas,
-                total: personas.length
+                data: listas,
+                total: listas.length
             }
         );
     }catch (error){
         res.status(500).json(
             {
                 success: false,
-                message: 'Error al obtener personas',
+                message: 'Error al obtener listas',
                 error: error.message
             }
         );
     }
 };
 
-//Crear una nueva persona
+//Crear una nueva lista
 const crear  = async (req, res) => {
     try{
-        const { nacionalidad } = req.body;
+        const { fechaLista } = req.body;
 
-        const nuevaPersona = await Estudiante.create({
-            nacionalidad
+        const nuevaLista = await Lista.create({
+            fechaLista
         });
 
         res.status(201).json({
             success: true,
-            message: 'Persona creada exitosamente',
-            data: nuevaPersona,
+            message: 'Lista creada exitosamente',
+            data: nuevaLista,
             error: null
         })
     }catch(error){
         res.status(500).json({
-            success: false,
-            message: 'Error al crear persona',
+            sucess: false,
+            message: 'Error al crear lista',
             data: null,
             error: error.message    
         });
