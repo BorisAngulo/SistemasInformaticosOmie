@@ -27,22 +27,25 @@ const obtenerTodos =  async (req, res)=> {
 //Crear una nueva persona
 const crear  = async (req, res) => {
     try{
-        const { nacionalidad } = req.body;
+        const { nombre, apellido, email, curso_id } = req.body;
 
         const nuevaPersona = await Estudiante.create({
-            nacionalidad
+            nombre,
+            apellido,
+            email,
+            curso_id
         });
 
         res.status(201).json({
             success: true,
-            message: 'Persona creada exitosamente',
+            message: 'Estudiante creado exitosamente',
             data: nuevaPersona,
             error: null
         })
     }catch(error){
         res.status(500).json({
             success: false,
-            message: 'Error al crear persona',
+            message: 'Error al crear estudiante',
             data: null,
             error: error.message    
         });

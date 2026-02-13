@@ -1,23 +1,23 @@
-import { Lista }  from '../models/index.js';
+import { Curso }  from '../models/index.js';
 
-//obtener todas las listas
+//obtener todas las cursos
 const obtenerTodos =  async (req, res)=> {
     try{
-        const listas = await Lista.findAll({
+        const cursos = await Curso.findAll({
             order: [['id', 'ASC']]
         }) 
         res.json(
             {
                 success: true,
-                data: listas,
-                total: listas.length
+                data: cursos,
+                total: cursos.length
             }
         );
     }catch (error){
         res.status(500).json(
             {
                 success: false,
-                message: 'Error al obtener listas',
+                message: 'Error al obtener cursos',
                 error: error.message
             }
         );
@@ -27,22 +27,24 @@ const obtenerTodos =  async (req, res)=> {
 //Crear una nueva lista
 const crear  = async (req, res) => {
     try{
-        const { fechaLista } = req.body;
+        const { nombreCurso, codigoCurso, gestion } = req.body;
 
-        const nuevaLista = await Lista.create({
-            fechaLista
+        const nuevoCurso = await Curso.create({
+            nombreCurso,
+            codigoCurso,
+            gestion
         });
 
         res.status(201).json({
             success: true,
-            message: 'Lista creada exitosamente',
-            data: nuevaLista,
+            message: 'Curso creado exitosamente',
+            data: nuevoCurso,
             error: null
         })
     }catch(error){
         res.status(500).json({
             success: false,
-            message: 'Error al crear lista',
+            message: 'Error al crear curso',
             data: null,
             error: error.message    
         });
