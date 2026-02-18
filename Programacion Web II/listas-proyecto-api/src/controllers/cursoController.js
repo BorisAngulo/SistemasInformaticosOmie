@@ -49,9 +49,106 @@ const crear  = async (req, res) => {
             error: error.message    
         });
     }
-}
+};
+
+// Obtener un curso por ID
+const obtenerPorId = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const curso = await Curso.findByPk(id);
+
+        if (!curso) {
+            return res.status(404).json({
+                success: false,
+                message: 'Curso no encontrado',
+                data: null
+            });
+        }
+
+        res.json({
+            success: true,
+            data: curso
+        });
+    } catch(error){
+        res.status(500).json({
+            success: false,
+            message: 'Error al obtener curso',
+            error: error.message
+        });
+    }
+};
+
+// Actualizar un curso
+const actualizar = async (req, res) => {
+    try{
+        const { id } = req.params;
+        const { nombreCurso, codigoCurso, gestion} = req.body;
+
+        const curso = await Curso.findByPk(id);
+
+        if (!curso) {
+            return res.status(404).json({
+                success: false,
+                message: 'Curso no encontrado',
+                data: null
+            });
+        }
+
+        await curso.update({
+            nombreCurso,
+            codigoCurso,
+            gestion
+        });
+
+        res.json({
+            success: true,
+            message: 'Curso actualizado exitosamente',
+            data: curso
+        });
+    }catch(error){
+        res.status(500).json({
+            success: false,
+            message: 'Error al actualizar curso',
+            error: error.message
+        });
+    }
+};
+
+// Eliminar un curso
+const eliminar = async (req, res) => {
+    try{
+        const { id } = req.params;
+        const curso = await Curso.findByPk(id);
+
+        if (!curso) {
+            return res.status(404).json({
+                success: false,
+                message: 'Curso no encontrado',
+                data: null
+            });
+        }
+
+        await curso.destroy();
+
+        res.json({
+            success: true,
+            message: 'Curso eliminado exitosamente',
+            data: null
+        });
+
+    }catch(error){
+        res.status(500).json({
+            success: false,
+            message: 'Error al eliminar curso',
+            error: error.message
+        });
+    }
+};
 
 export default {
     obtenerTodos,
-    crear
+    crear,
+    obtenerPorId,
+    actualizar,
+    eliminar
 }

@@ -1,4 +1,4 @@
-import { Lista, Curso, Estudiante, ListaEstudiante }  from '../models/index.js';
+import { Lista, Curso, Estudiante, EstudianteLista }  from '../models/index.js';
 //obtener todas las listas
 const obtenerTodos =  async (req, res)=> {
     try{
@@ -46,7 +46,100 @@ const crear  = async (req, res) => {
             error: error.message    
         });
     }
-}
+};
+
+// Obtener una lista por ID
+const obtenerPorId = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const lista = await Lista.findByPk(id);
+
+        if (!lista) {
+            return res.status(404).json({
+                success: false,
+                message: 'Lista no encontrada',
+                data: null
+            });
+        }
+
+        res.json({
+            success: true,
+            data: lista
+        });
+    } catch(error){
+        res.status(500).json({
+            success: false,
+            message: 'Error al obtener lista',
+            error: error.message
+        });
+    }
+};
+
+// Actualizar una lista
+const actualizar = async (req, res) => {
+    try{
+        const { id } = req.params;
+        const { fechaLista } = req.body;
+
+        const lista = await Lista.findByPk(id);
+
+        if (!lista) {
+            return res.status(404).json({
+                success: false,
+                message: 'Lista no encontrada',
+                data: null
+            });
+        }
+
+        await lista.update({
+            fechaLista
+        });
+
+        res.json({
+            success: true,
+            message: 'Lista actualizada exitosamente',
+            data: lista
+        });
+    }catch(error){
+        res.status(500).json({
+            success: false,
+            message: 'Error al actualizar lista',
+            error: error.message
+        });
+    }
+};
+
+// Eliminar una lista
+const eliminar = async (req, res) => {
+    try{
+        const { id } = req.params;
+        const lista = await Lista.findByPk(id);
+
+        if (!lista) {
+            return res.status(404).json({
+                success: false,
+                message: 'Lista no encontrada',
+                data: null
+            });
+        }
+
+        await lista.destroy();
+
+        res.json({
+            success: true,
+            message: 'Lista eliminada exitosamente',
+            data: null
+        });
+
+    }catch(error){
+        res.status(500).json({
+            success: false,
+            message: 'Error al eliminar lista',
+            error: error.message
+        });
+    }
+};
+
 
 // Llamar lista de un curso - Agrega todos los estudiantes de una lista
 const llamarLista = async (req, res) => {
@@ -83,7 +176,7 @@ const llamarLista = async (req, res) => {
             });
         }
 
-        const existentes = await ListaEstudiante.count({
+        const existentes = await EstudianteLista.count({
             where: { lista_id: id}
         });
         if( existentes > 0){
@@ -100,7 +193,7 @@ const llamarLista = async (req, res) => {
         }));
 
         //Crea una ListaEstudiante por cada registro
-        await ListaEstudiante.bulkCreate(registros);
+        await EstudianteLista.bulkCreate(registros);
 
         res.json({
             success: true,
@@ -120,5 +213,8 @@ const llamarLista = async (req, res) => {
 export default {
     obtenerTodos,
     crear,
+    actualizar,
+    obtenerPorId,
+    eliminar,
     llamarLista
 }
