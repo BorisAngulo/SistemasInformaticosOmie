@@ -195,10 +195,27 @@ const llamarLista = async (req, res) => {
         //Crea una ListaEstudiante por cada registro
         await EstudianteLista.bulkCreate(registros);
 
+        const listaCompleta = await Lista.findBypK(id , {
+            include: [{
+                model: Estudiante,
+                as: 'estudiantes',
+                through: {
+                    attributes: ['estado']
+                },
+                include: [{
+                    model: Curso,
+                    as: 'curso',
+                    through: {
+                        attributes: ['id', 'nombreCurso', 'codigoCurso']
+                    }
+                }]
+            }]
+        });
+
         res.json({
             success: true,
-            message: 'Lista llamada exitosamente',
-            data: registros
+            message: `Lista llamada a ${estudiantes.length} estudiantes del curso "${curso.nombreCurso} agregados"`,
+            data: listaCompleta
         });
 
     }catch (error){ 
@@ -210,11 +227,47 @@ const llamarLista = async (req, res) => {
     }
 };
 
+// Actualizar estado de un estudiante en la lista (marcar asistencia)
+const actualizarEstado = async (req, res) => {
+    try{
+        const { id, estudiante_id} = req.params;
+        const { estado } = req.body;
+
+        const registro = await EstudianteLista.findOne({
+            where: { lista_id: id, estudiante_id: estudiante_id }
+        })
+
+        if(!registro){
+            return res.status(404).json({
+                success: false,
+                message: 'Estudiante o Lista no encontrada'
+            });
+
+            await registro.update({
+                estado
+            });
+
+            res.json({
+                success: true,
+                message: "Estudiante actualizado existosamente",
+                data: registro
+            });
+        }
+    }catch (error){
+        res.status(500).json({
+            success: false,
+            message: 'Error al actualizar estado del estudiante',
+            error: error.message
+        });
+    }
+}
+
 export default {
     obtenerTodos,
     crear,
     actualizar,
     obtenerPorId,
     eliminar,
-    llamarLista
+    llamarLista,
+    actualizarEstado
 }
