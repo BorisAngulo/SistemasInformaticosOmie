@@ -6,7 +6,7 @@ import Login from './screens/Login'
 import Contact from './screens/Contact'
 import CrearEstudiante from './screens/CrearEstudiante'
 import './App.css'
-import ButtonComponent from './components/ButtonComponent'
+import CrearCurso from './screens/CrearCurso'
 
 function App() {
  
@@ -20,6 +20,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/crear-estudiante" element={<CrearEstudiante />} />
+            <Route path="/crear-curso" element={<CrearCurso />} />
           </Routes>
         </main>
         <FooterComponent />
