@@ -4,10 +4,12 @@ import estudianteRoutes from './routes/estudianteRoutes.js';
 import listaRoutes from './routes/listaRoutes.js';
 import cursoRoutes from './routes/cursoRoutes.js';
 import listaEstudianteRoutes from './routes/listaEstudianteRoutes.js';
+import cors from 'cors';
 
 const app = express();
 
 // Middlewares
+app.use(cors());//Permitir todas las solicititudes
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
