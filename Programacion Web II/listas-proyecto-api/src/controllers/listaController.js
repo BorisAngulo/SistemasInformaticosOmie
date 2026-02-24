@@ -195,19 +195,18 @@ const llamarLista = async (req, res) => {
         //Crea una ListaEstudiante por cada registro
         await EstudianteLista.bulkCreate(registros);
 
-        const listaCompleta = await Lista.findBypK(id , {
+        const listaCompleta = await Lista.findByPk(id , {
             include: [{
                 model: Estudiante,
                 as: 'estudiantes',
+                attributes: ['id', 'nombre', 'apellido', 'email'],
                 through: {
                     attributes: ['estado']
                 },
                 include: [{
                     model: Curso,
                     as: 'curso',
-                    through: {
-                        attributes: ['id', 'nombreCurso', 'codigoCurso']
-                    }
+                    attributes: ['id', 'nombreCurso', 'codigoCurso']
                 }]
             }]
         });

@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import cursoServices from '../services/cursoServices';
+import listaServices from '../services/listaServices';
 
 function LlamarLista(){
     const [cursos, setCursos] = useState([]);
@@ -7,7 +8,10 @@ function LlamarLista(){
     const [fechaLista, setFechaLista] = useState(
         new Date().toISOString().split('T')[0]
     );
+    const [listaId, setListaId] = useState(null);
     const [listaCreada, setListaCreada] = useState(false);
+    const [ estudiantes, setEstudiantes] = useState([]);
+
 
     useEffect(() => {
             const cargarCursos = async () => {
@@ -24,8 +28,48 @@ function LlamarLista(){
         cargarCursos();
     }, []);
 
-    const handleSubmitLista = async () => {
-    
+    const crearYLlamarLista = async () => {
+        if (!cursoSeleccionado){
+            alert('Por favor, seleccione un curso para crear la lista');
+            return;
+        }
+        try{
+            //Paso 1 crear lista vacia
+            const resultCrear = await listaServices.crear({
+                fechaLista: fechaLista,
+            })
+
+            if(!resultCrear.success){
+                throw new Error(resultCrear.error || 'Error al crear la lista');
+            }
+
+            const nuevaListaId = resultCrear.data.id;
+            setListaId(nuevaListaId);
+            
+
+            //Paso 2 llamar lista con el curso seleccionado
+            const resultLlamar = await listaServices.llamarLista(nuevaListaId, cursoSeleccionado);
+            
+            if(!resultLlamar.success){
+                throw new Error(resultLlamar.error || 'Error al llamar la lista');
+            }
+
+            if (resultLlamar.success){
+                setEstudiantes(resultLlamar.data.estudiantes.map(
+                    est => ({
+                        id: est.id,
+                        nombre: est.nombre,
+                        apellido: est.apellido,
+                        email: est.email,
+                        estado: est.EstudianteLista.estado
+                    })
+                ));
+                setListaCreada(true);
+
+            }
+        }catch(error){
+            alert(error.message);
+        }
     }
     
     return(
@@ -54,7 +98,7 @@ function LlamarLista(){
                             value={fechaLista}
                             onChange={(e) => setFechaLista(e.target.value)}
                         />
-                        <button onClick={handleSubmitLista}
+                        <button onClick={crearYLlamarLista}
                         className='bg-blue-500 rounded'>
                             Crear Lista
                         </button>
@@ -62,6 +106,18 @@ function LlamarLista(){
                 </>
                 ):(
                     <>
+                    <div>
+                        <h3>LISTA CREADA EXITOSAMENTE</h3>
+                        <p>Lista ID: {listaId}</p>
+                        <h4>Estudiantes:</h4>
+                        <ul>
+                            {estudiantes.map((estudiante) => (
+                                <li key={estudiante.id}>
+                                    {estudiante.nombre} {estudiante.apellido} - {estudiante.email} - Estado: {estudiante.estado}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                     </>
                 )
             }
