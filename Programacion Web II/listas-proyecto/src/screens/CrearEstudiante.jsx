@@ -1,13 +1,32 @@
 import { useState, useEffect} from 'react';
 import estudianteServices from '../services/estudianteServices';
-
+import cursoServices from '../services/cursoServices';
+import { useNavigate } from 'react-router-dom';
 function CrearEstudiante() {
+
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         nombre: '',
         apellido: '',
         email: '',
         curso_id:''
     })
+    const [cursos, setCursos] = useState([]);
+    const [cursoSeleccionado, setCursoSeleccionado] = useState('');
+
+    useEffect(() => {
+        const cargarCursos = async () => {
+            try {
+                const result = await cursoServices.obtenerTodos();
+                if(result.success){
+                    setCursos(result.data);
+                }
+            }catch(error){
+                console.error('Error al cargar cursos: ', error);
+            }
+        }
+        cargarCursos();
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -24,11 +43,13 @@ function CrearEstudiante() {
                 nombre: formData.nombre,
                 apellido: formData.apellido,
                 email: formData.email,
-                curso_id: formData.curso_id
+                curso_id: cursoSeleccionado
             }
             const result = await estudianteServices.crear(estudiante);
-            console.log('Estudiante creado:', result);
-
+            alert('Estudiante creado exitosamente')
+            setTimeout(() => {
+                navigate('/');
+            }, 500);
         }catch(error){
             console.error('Error al crear estudiante:', error);
         }
@@ -88,16 +109,19 @@ function CrearEstudiante() {
                     <label htmlFor="Curso" className='block mb-2 text-sm font-medium text-gray-900'>
                         Curso *
                     </label>
-                    <input 
-                    id="curso_id"
-                    name="curso_id"
-                    type="text"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-opacity-50"
-                    placeholder='Ingrese el id del curso'
-                    value={formData.curso_id}
-                    onChange={handleChange}
-                    required
-                    />
+                    <select 
+                                id='curso' 
+                                value={cursoSeleccionado} 
+                                onChange={(e) => setCursoSeleccionado(e.target.value)}
+                                className="w-full shadow appearance-none border rounded py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-red-500"
+                            >
+                                <option value="">Seleccione un curso</option>
+                                {cursos.map((curso) => (
+                                    <option key={curso.id} value={curso.id}>
+                                        {curso.nombreCurso} - {curso.codigoCurso}
+                                    </option>
+                                ))}
+                            </select>
                 </div>
                 <div className='flex justify-center'>
                 <button type="submit" className=' text-white px-4 py-2 rounded-lg bg-green-600 hover:bg-green-700 mt-6'>

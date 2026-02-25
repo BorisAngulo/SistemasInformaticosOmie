@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import cursoServices from '../services/cursoServices';
-
+import { useNavigate } from 'react-router-dom';
 function CrearCurso(){
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         nombreCurso: '',
         codigoCurso: '',
@@ -26,6 +27,10 @@ function CrearCurso(){
             }
             const result = await cursoServices.crear(curso);
             console.log('Curso creado:', result);
+            alert('Curso creado exitosamente')
+            setTimeout(() => {
+                navigate('/');
+            }, 500);
 
         }catch(error){
             console.error('Error al crear curso:', error);
