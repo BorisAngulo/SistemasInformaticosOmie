@@ -177,7 +177,7 @@ function LlamarLista(){
 
                         <button 
                             onClick={crearYLlamarLista}
-                            className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-200 mt-6"
+                            className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition duration-200 mt-6"
                         >
                             Crear y Llamar Lista
                         </button>
@@ -185,7 +185,7 @@ function LlamarLista(){
                 </div>
             ) : (
                 <div className="bg-white shadow-md rounded-lg overflow-hidden">
-                    <div className="bg-amber-600 text-white px-6 py-4">
+                    <div className="bg-green-600 text-white px-6 py-4">
                         <h3 className="text-xl font-bold">✓ Lista Creada Exitosamente</h3>
                         <p className="text-sm opacity-90">Lista ID: {listaId} | Fecha: {new Date(fechaLista).toLocaleDateString('es-ES')}</p>
                     </div>

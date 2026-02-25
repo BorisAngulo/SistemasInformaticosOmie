@@ -47,7 +47,7 @@ function CrearEstudiante() {
                     id="nombre"
                     name="nombre"
                     type="text"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-opacity-50"
                     placeholder='Ingrese el nombre'
                     value={formData.nombre}
                     onChange={handleChange}
@@ -62,7 +62,7 @@ function CrearEstudiante() {
                     id="apellido"
                     name="apellido"
                     type="text"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-opacity-50"
                     placeholder='Ingrese el apellido'
                     value={formData.apellido}
                     onChange={handleChange}
@@ -77,7 +77,7 @@ function CrearEstudiante() {
                     id="email"
                     name="email"
                     type="email"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-opacity-50"
                     placeholder='Ingrese el email'
                     value={formData.email}
                     onChange={handleChange}
@@ -92,16 +92,18 @@ function CrearEstudiante() {
                     id="curso_id"
                     name="curso_id"
                     type="text"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-opacity-50"
                     placeholder='Ingrese el id del curso'
                     value={formData.curso_id}
                     onChange={handleChange}
                     required
                     />
                 </div>
-                <button type="submit" className='bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 mt-6'>
+                <div className='flex justify-center'>
+                <button type="submit" className=' text-white px-4 py-2 rounded-lg bg-green-600 hover:bg-green-700 mt-6'>
                     Crear Estudiante
                 </button>
+                </div>
                 </div>
             </form>
         </div>

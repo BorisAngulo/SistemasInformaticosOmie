@@ -82,7 +82,7 @@ function CrearCurso(){
                     />
                 </div>
                 <div className='flex justify-center'>
-                <button type="submit" className='bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 mt-6'>
+                <button type="submit" className='text-white px-4 py-2 rounded-lg bg-green-600 hover:bg-green-700 mt-6'>
                     Crear Curso
                 </button>
                 </div>
