@@ -1,8 +1,9 @@
 
 function FooterComponent(){
     return(
-        <footer className="bg-green-500 p-6">
-            <p>Copyright 2024</p>
+        <footer className="bg-red-600 p-6 text-white text-center mt-10">
+            <p>Copyright 2026</p>
+            <p>Sistema de Listas OMIE</p>
         </footer>
     )
 }

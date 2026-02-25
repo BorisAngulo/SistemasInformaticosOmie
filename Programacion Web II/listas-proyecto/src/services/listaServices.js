@@ -58,7 +58,56 @@ const listaServices = {
         }catch(error){
             throw error;
         }
-    }
+    },
+
+    obtenerPorId: async (id) => {
+        try{
+            const response = await fetch(`${API_URL}/listas/${id}`);
+            const result = await response.json();
+            if (!response.ok){
+                throw new Error(result.error || 'Error al obtener la lista');
+            }
+            return result;
+        }catch(error){
+            throw error;
+        }
+    },
+
+    actualizarEstado: async (listaId, estudianteId, estado) => {
+        try{
+            const response = await fetch(`${API_URL}/listas/${listaId}/estudiantes/${estudianteId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ estado })
+            });
+            const result = await response.json();
+            if (!response.ok){
+                throw new Error(result.message || 'Error al actualizar estado');
+            }
+            return result;
+        }catch(error){
+            throw error;
+        }
+    },
+
+    actualizarEstadosMultiples: async (listaId, estudiantes) => {
+        try {
+            const promesas = estudiantes.map(estudiante => 
+                listaServices.actualizarEstado(listaId, estudiante.id, estudiante.estado)
+            );
+            
+            await Promise.all(promesas);
+            
+            return {
+                success: true,
+                message: `${estudiantes.length} estudiantes actualizados`
+            };
+        } catch (error) {
+            throw error;
+        }
+    },
 } 
 
 export default listaServices;

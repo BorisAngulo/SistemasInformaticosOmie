@@ -8,6 +8,7 @@ import CrearEstudiante from './screens/CrearEstudiante'
 import './App.css'
 import CrearCurso from './screens/CrearCurso'
 import LlamarLista from './screens/LlamarLista'
+import VerListas from './screens/verListas'
 
 function App() {
  
@@ -23,6 +24,7 @@ function App() {
             <Route path="/crear-estudiante" element={<CrearEstudiante />} />
             <Route path="/crear-curso" element={<CrearCurso />} />
             <Route path="/llamar-lista" element={<LlamarLista />} />
+            <Route path="/listas" element={<VerListas />} />
           </Routes>
         </main>
         <FooterComponent />

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import cursoServices from '../services/cursoServices';
 
 function CrearCurso(){
@@ -44,7 +44,7 @@ function CrearCurso(){
                     id="nombreCurso"
                     name="nombreCurso"
                     type="text"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-opacity-50"
                     placeholder='Ingrese el nombre del curso'
                     value={formData.nombreCurso}
                     onChange={handleChange}
@@ -59,7 +59,7 @@ function CrearCurso(){
                     id="codigoCurso"
                     name="codigoCurso"
                     type="text"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-opacity-50"
                     placeholder='Ingrese el codigo del curso'
                     value={formData.codigoCurso}
                     onChange={handleChange}
@@ -74,17 +74,18 @@ function CrearCurso(){
                     id="gestion"
                     name="gestion"
                     type="text"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 focus:outline-none focus:ring-2 focus:ring-opacity-50"
                     placeholder='Ingrese la gestion del curso'
                     value={formData.gestion}
                     onChange={handleChange}
                     required
                     />
                 </div>
-        
+                <div className='flex justify-center'>
                 <button type="submit" className='bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 mt-6'>
                     Crear Curso
                 </button>
+                </div>
                 </div>
             </form>
         </div>

@@ -3,7 +3,20 @@ import { Lista, Curso, Estudiante, EstudianteLista }  from '../models/index.js';
 const obtenerTodos =  async (req, res)=> {
     try{
         const listas = await Lista.findAll({
-            order: [['id', 'ASC']]
+            include: [{
+                model: Estudiante,
+                as: 'estudiantes',
+                attributes: ['id', 'nombre', 'apellido', 'email'],
+                through: {
+                    attributes: ['estado']
+                },
+                include: [{
+                    model: Curso,
+                    as: 'curso',
+                    attributes: ['id', 'nombreCurso', 'codigoCurso']
+                }]
+            }],
+            order: [['createdAt', 'DESC']]
         }) 
         res.json(
             {
@@ -52,7 +65,21 @@ const crear  = async (req, res) => {
 const obtenerPorId = async (req, res) => {
     try {
         const { id } = req.params;
-        const lista = await Lista.findByPk(id);
+        const lista = await Lista.findByPk(id, {
+            include: [{
+                model: Estudiante,
+                as: 'estudiantes',
+                attributes: ['id', 'nombre', 'apellido', 'email'],
+                through: {
+                    attributes: ['estado']
+                },
+                include: [{
+                    model: Curso,
+                    as: 'curso',
+                    attributes: ['id', 'nombreCurso', 'codigoCurso']
+                }]
+            }]
+        });
 
         if (!lista) {
             return res.status(404).json({
@@ -241,17 +268,17 @@ const actualizarEstado = async (req, res) => {
                 success: false,
                 message: 'Estudiante o Lista no encontrada'
             });
-
-            await registro.update({
-                estado
-            });
-
-            res.json({
-                success: true,
-                message: "Estudiante actualizado existosamente",
-                data: registro
-            });
         }
+
+        await registro.update({
+            estado
+        });
+
+        res.json({
+            success: true,
+            message: "Estudiante actualizado exitosamente",
+            data: registro
+        });
     }catch (error){
         res.status(500).json({
             success: false,
